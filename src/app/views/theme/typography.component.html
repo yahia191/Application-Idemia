@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+
+<body>
+  <h1 class="list-group-item list-group-item list-group-item-dark" id="test1">
+  </h1>
+  <hr>
+  <h2 class="list-group-item list-group-item list-group-item-success" id="test2">
+  </h2>
+  <!-- <div id="test10"></div>
+  <hr> -->
+  <h2 class="list-group-item list-group-item list-group-item-danger " id="test3">
+  </h2>
+  <!-- <div id="test20" ></div> -->
+  
+  <br> <br>
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button  (click)="onClickMe()" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Afficher les tests pass
+          </button>
+        </h5>
+      </div>
+  
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body"  id="myDiv">
+            
+          </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button (click)="onClickMe1()" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Afficher les tests fail
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body" id="myDiv1">
+            
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+  <canvas id="myChart" width="-200" height="-200"></canvas>
+
+
+
+  
+</body>
+</html>
+

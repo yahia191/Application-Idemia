@@ -3,42 +3,42 @@ import { DomSanitizer} from '@angular/platform-browser';
 import { Chart } from 'chart.js';
 import { from } from 'rxjs';
 import { monkeyPatchChartJsLegend } from 'ng2-charts';
+import { AppiumService } from '../../appium.service';
 
 
 @Component({
   templateUrl: 'colors.component.html'
 })
 export class ColorsComponent implements OnInit {
+  eulaContent = '';
+  a='';b='';
+  c=0;d=0;
+  doc;
 
 
 
-a='';b='';
-c=0;d=0;
-  constructor() { }
-   ngOnInit(): void {
-    fetch('/assets/Test-Automation-Report.html').then(res => res.text()).then(data => {
-      
-            let parser = new DOMParser(),
-                doc = parser.parseFromString(data, 'text/html');
-                
-                for (let index = 0; index < doc.getElementsByClassName('test-status').length; index++) {
-                  if(doc.getElementsByClassName('test-status')[index].textContent==="pass"){
-                    this.b+=doc.getElementsByClassName('test-name')[index].textContent+"<br>";
-                    this.c++;
-                  }else{
-                    this.a+=doc.getElementsByClassName('test-name')[index].textContent +"<br>";
-                    this.d++;
-                  }
-              }
-     
-      
-              document.getElementById("test1").innerHTML+="le nombre de test total "+doc.getElementsByClassName('test-status').length+"<br>"; 
-              document.getElementById("test2").innerHTML+="le nombre de test pass "+this.c+"<br>";
-             /*  document.getElementById("test10").innerHTML+=this.b+"<br>"; */
-              document.getElementById("test3").innerHTML+="le nombre de test fail "+this.d+"<br>";
-              /* document.getElementById("test20").innerHTML+=this.a+"<br>"; */
+  constructor(private appiumService: AppiumService) { }
+ 
+
+   async getValues() {
+    const values = await this.appiumService.getValues();
+
+    if(values !== null){
+      this.a = values.a;
+      this.b = values.b;
+      this.c = values.c;
+      this.d = values.d;
+      this.doc = values.doc;
+    
+      document.getElementById("test1").innerHTML+="le nombre de test total "+this.doc.getElementsByClassName('test-status').length;
+      /* document.getElementById("test10").innerHTML+=this.y+"<br>"; */
+      document.getElementById("test2").innerHTML+="le nombre de test positif "+this.c+"<br>";
+      /* document.getElementById("test20").innerHTML+=this.x+"<br>"; */
+      document.getElementById("test3").innerHTML+="le nombre de test fail "+this.d+"<br>";
+
+
               
-              var myChart = new Chart('myChart', {
+              new Chart('myChart', {
                 type: 'doughnut',
                 data: {
                     labels: ['pass', 'fail'],
@@ -60,14 +60,22 @@ c=0;d=0;
                   }
                 }
             }); 
-        });
         
   }
-  onClickMe() {
+
+
+  
+
+  }
+  ngOnInit(): void {
+    this.getValues();
+  }
+  
+    onClickMe() {
 
   let myContainer = <HTMLElement> document.querySelector("#myDiv")
   myContainer.innerHTML=this.b+"<br>";
-  
+
   }
 
   async onClickMe1() {
@@ -79,13 +87,6 @@ c=0;d=0;
      
     console.log(this.d);
   }
-  
-  
-  /* public doughnutChartLabels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData = [
-    [350, 450, 100],
-  ];
-  public doughnutChartType = 'doughnut'; */
-  
+
 
 }

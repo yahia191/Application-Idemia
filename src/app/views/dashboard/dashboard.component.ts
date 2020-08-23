@@ -14,8 +14,6 @@ export class DashboardComponent implements OnInit {
   
 
   ngOnInit(): void {
-    let myCompOneObj = new ColorsComponent();
-    myCompOneObj.test();
 
     
   }

@@ -21,6 +21,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { CalabashService } from './calabash.service'
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -40,6 +41,7 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -55,7 +57,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -65,10 +67,13 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+  providers: [
+    CalabashService,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

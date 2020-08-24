@@ -30,11 +30,11 @@ export class ColorsComponent implements OnInit {
       this.d = values.d;
       this.doc = values.doc;
     
-      document.getElementById("test1").innerHTML+="le nombre de test total "+this.doc.getElementsByClassName('test-status').length;
+      document.getElementById("test1").innerHTML+="Le nombre total des tests: "+this.doc.getElementsByClassName('test-status').length;
       /* document.getElementById("test10").innerHTML+=this.y+"<br>"; */
-      document.getElementById("test2").innerHTML+="le nombre de test pass "+this.c+"<br>";
+      document.getElementById("test2").innerHTML+=this.c+"<br>";
       /* document.getElementById("test20").innerHTML+=this.x+"<br>"; */
-      document.getElementById("test3").innerHTML+="le nombre de test fail "+this.d+"<br>";
+      document.getElementById("test3").innerHTML+=this.d+"<br>";
 
 
               

@@ -20,8 +20,8 @@ export class TypographyComponent implements OnInit {
     private calabashService: CalabashService
   ) { }
 
-  async getValues() {
-    const values = await this.calabashService.getValues();
+  async getValues1() {
+    const values = await this.calabashService.getValues1();
 
     if(values !== null){
       this.x = values.x;
@@ -30,14 +30,14 @@ export class TypographyComponent implements OnInit {
       this.t = values.t;
       this.doc = values.doc;
     
-      document.getElementById("test11").innerHTML+="le nombre de test total "+this.doc.getElementsByTagName("H3").length;
+      document.getElementById("test11").innerHTML+= "Le nombre total des tests: "+this.doc.getElementsByTagName("H3").length;
       /* document.getElementById("test10").innerHTML+=this.y+"<br>"; */
-      document.getElementById("test12").innerHTML+="le nombre de test pass "+this.z+"<br>";
+      document.getElementById("test12").innerHTML+=this.z+"<br>";
       /* document.getElementById("test20").innerHTML+=this.x+"<br>"; */
-      document.getElementById("test13").innerHTML+="le nombre de test fail "+this.t+"<br>";
+      document.getElementById("test13").innerHTML+=this.t+"<br>";
 
 
-      new Chart('myChart', {
+      new Chart('myChart1', {
         type: 'doughnut',
         data: {
             labels: ['pass', 'fail'],
@@ -67,7 +67,7 @@ export class TypographyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getValues();
+    this.getValues1();
   }
   
     onClickMe() {

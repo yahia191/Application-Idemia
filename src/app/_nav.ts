@@ -9,17 +9,17 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
-    name: 'Theme'
+    name: 'TEST'
   },
   {
     name: 'Appium',
     url: '/theme/colors',
-    icon: 'icon-drop'
+    icon: 'icon-layers'
   },
   {
     name: 'Calabash',
     url: '/theme/typography',
-    icon: 'icon-pencil'
+    icon: 'icon-layers'
   },
 
   /* {

@@ -13,13 +13,14 @@ export class DashboardComponent implements OnInit {
   z=0;t=0;
   c=0;d=0;
   doc;
-  calabashService: any;
 
 
-  constructor(private appiumService: AppiumService, calabashService: CalabashService) { }
+  constructor(private appiumService: AppiumService, private calabashService: CalabashService) { }
   
   ngOnInit(): void {
     this.getValues();
+    this.getValues1();
+   
   }
  
 
@@ -63,13 +64,14 @@ export class DashboardComponent implements OnInit {
         
   }
 
+  
 
 
 }
 
 
 async getValues1() {
-  const values = await this.calabashService.getValues1();
+  const values = await this.calabashService.getValues();
 
   if(values !== null){
     this.z = values.z;

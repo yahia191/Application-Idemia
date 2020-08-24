@@ -90,3 +90,5 @@ export class ColorsComponent implements OnInit {
 
 
 }
+
+/* nom :string="yahia" */

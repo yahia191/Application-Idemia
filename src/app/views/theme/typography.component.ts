@@ -20,8 +20,8 @@ export class TypographyComponent implements OnInit {
     private calabashService: CalabashService
   ) { }
 
-  async getValues1() {
-    const values = await this.calabashService.getValues1();
+  async getValues() {
+    const values = await this.calabashService.getValues();
 
     if(values !== null){
       this.x = values.x;
@@ -67,7 +67,7 @@ export class TypographyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getValues1();
+    this.getValues();
   }
   
     onClickMe() {

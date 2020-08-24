@@ -7,7 +7,7 @@ export class CalabashService {
 
   constructor() { }
   
-  async getValues1() : Promise<{
+  async getValues() : Promise<{
       x: string;
       y: string;
       z: number;

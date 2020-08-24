@@ -30,11 +30,11 @@ export class TypographyComponent implements OnInit {
       this.t = values.t;
       this.doc = values.doc;
     
-      document.getElementById("test1").innerHTML+="le nombre de test total "+this.doc.getElementsByTagName("H3").length;
+      document.getElementById("test11").innerHTML+="le nombre de test total "+this.doc.getElementsByTagName("H3").length;
       /* document.getElementById("test10").innerHTML+=this.y+"<br>"; */
-      document.getElementById("test2").innerHTML+="le nombre de test positif "+this.z+"<br>";
+      document.getElementById("test12").innerHTML+="le nombre de test pass "+this.z+"<br>";
       /* document.getElementById("test20").innerHTML+=this.x+"<br>"; */
-      document.getElementById("test3").innerHTML+="le nombre de test fail "+this.t+"<br>";
+      document.getElementById("test13").innerHTML+="le nombre de test fail "+this.t+"<br>";
 
 
       new Chart('myChart', {
@@ -88,3 +88,5 @@ export class TypographyComponent implements OnInit {
   }
 
 }
+
+

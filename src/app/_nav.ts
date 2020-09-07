@@ -1,249 +1,131 @@
-import { INavData } from '@coreui/angular';
+import { INavData } from "@coreui/angular";
 
-export const navItems: INavData[] = [
-  {
-    name: 'Dashboard',
-    url: '/dashboard',
-    icon: 'icon-speedometer',
-  
-  },
-  {
-    title: true,
-    name: 'TEST'
-  },
-  {
-    name: 'Appium',
-    url: '/theme/colors',
-    icon: 'icon-layers'
-  },
-  {
-    name: 'Calabash',
-    url: '/theme/typography',
-    icon: 'icon-layers'
-  },
-
-  /* {
-    title: true,
-    name: 'Components'
-  },
-  {
-    name: 'Base',
-    url: '/base',
-    icon: 'icon-puzzle',
-    children: [
-      {
-        name: 'Cards',
-        url: '/base/cards',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Carousels',
-        url: '/base/carousels',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Collapses',
-        url: '/base/collapses',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Forms',
-        url: '/base/forms',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Navbars',
-        url: '/base/navbars',
-        icon: 'icon-puzzle'
-
-      },
-      {
-        name: 'Pagination',
-        url: '/base/paginations',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Popovers',
-        url: '/base/popovers',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Progress',
-        url: '/base/progress',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Switches',
-        url: '/base/switches',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tables',
-        url: '/base/tables',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tabs',
-        url: '/base/tabs',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tooltips',
-        url: '/base/tooltips',
-        icon: 'icon-puzzle'
-      }
-    ]
-  },
-  {
-    name: 'Buttons',
-    url: '/buttons',
-    icon: 'icon-cursor',
-    children: [
-      {
-        name: 'Buttons',
-        url: '/buttons/buttons',
-        icon: 'icon-cursor'
-      },
-      {
-        name: 'Dropdowns',
-        url: '/buttons/dropdowns',
-        icon: 'icon-cursor'
-      },
-      {
-        name: 'Brand Buttons',
-        url: '/buttons/brand-buttons',
-        icon: 'icon-cursor'
-      }
-    ]
-  },
-  {
-    name: 'Charts',
-    url: '/charts',
-    icon: 'icon-pie-chart'
-  },
-  {
-    name: 'Icons',
-    url: '/icons',
-    icon: 'icon-star',
-    children: [
-      {
-        name: 'CoreUI Icons',
-        url: '/icons/coreui-icons',
-        icon: 'icon-star',
-        badge: {
-          variant: 'success',
-          text: 'NEW'
-        }
-      },
-      {
-        name: 'Flags',
-        url: '/icons/flags',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Font Awesome',
-        url: '/icons/font-awesome',
-        icon: 'icon-star',
-        badge: {
-          variant: 'secondary',
-          text: '4.7'
-        }
-      },
-      {
-        name: 'Simple Line Icons',
-        url: '/icons/simple-line-icons',
-        icon: 'icon-star'
-      }
-    ]
-  },
-  {
-    name: 'Notifications',
-    url: '/notifications',
-    icon: 'icon-bell',
-    children: [
-      {
-        name: 'Alerts',
-        url: '/notifications/alerts',
-        icon: 'icon-bell'
-      },
-      {
-        name: 'Badges',
-        url: '/notifications/badges',
-        icon: 'icon-bell'
-      },
-      {
-        name: 'Modals',
-        url: '/notifications/modals',
-        icon: 'icon-bell'
-      }
-    ]
-  },
-  {
-    name: 'Widgets',
-    url: '/widgets',
-    icon: 'icon-calculator',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
+/*var start= "20200823";*/
+function test() {
+  var start = "2020-08-23";
+  var v1start = start.split("-");
+  var recupdate = new Date(start);
+  var today = new Date();
+  var a = [];
+  var c;
+  var j, m, recup;
+  while (recupdate < today) {
+    var dd = recupdate.getDate();
+    var mm = recupdate.getMonth() + 1;
+    var yyyy = recupdate.getFullYear();
+    if (dd < 10) {
+      j = "0" + dd;
+    } else {
+      j = dd;
     }
-  },
-  {
-    divider: true
-  },
-  {
+
+    if (mm < 10) {
+      m = "0" + mm;
+    } else {
+      m = mm;
+    }
+    recup = yyyy + "" + m + "" + j;
+
+    a.push(recup);
+    recupdate.setDate(recupdate.getDate() + 1);
+  }
+  var fin1 = {
+    name: "Dashboard",
     title: true,
-    name: 'Extras',
+  };
+
+  var fin3;
+
+  a.forEach(
+    (element) =>
+      (fin3 =
+        fin3 +
+        {
+          name: "20200823",
+          url: "/dashboard/20200823",
+          icon: "icon-layers",
+        })
+  );
+
+  console.log(a);
+
+  var fin = fin1 + fin3;
+  console.warn(fin);
+  return a;
+}
+
+const list = test();
+
+let items: INavData[] = [
+  {
+    name: "tests",
+    title: true,
   },
   {
-    name: 'Pages',
-    url: '/pages',
-    icon: 'icon-star',
-    children: [
-      {
-        name: 'Login',
-        url: '/login',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Register',
-        url: '/register',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 404',
-        url: '/404',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 500',
-        url: '/500',
-        icon: 'icon-star'
-      }
-    ]
+    name: "historique",
+    url: "/charts",
+    icon: "icon-pie-chart",
   },
   {
-    name: 'Disabled',
-    url: '/dashboard',
-    icon: 'icon-ban',
-    badge: {
-      variant: 'secondary',
-      text: 'NEW'
-    },
-    attributes: { disabled: true },
+    name: "Dashboard",
+    title: true,
   },
-  {
-    name: 'Download CoreUI',
-    url: 'http://coreui.io/angular/',
-    icon: 'icon-cloud-download',
-    class: 'mt-auto',
-    variant: 'success',
-    attributes: { target: '_blank', rel: 'noopener' }
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'http://coreui.io/pro/angular/',
-    icon: 'icon-layers',
-    variant: 'danger',
-    attributes: { target: '_blank', rel: 'noopener' }
-  } */
 ];
+
+list.forEach((element) => {
+  items.push({
+    name: element,
+    url: "/dashboard/" + element,
+    icon: "icon-layers",
+  });
+});
+
+export const navItems: INavData[] = items;
+
+/*
+export const navItems: INavData[] = [
+  
+  {
+    name: "Dashboard",
+    title: true,
+  },
+  {
+    name: "20200823",
+    url: "/dashboard/20200823",
+    icon: "icon-layers",
+  },
+  {
+    name: "20200824",
+    url: "/dashboard/20200824",
+    icon: "icon-layers",
+  },
+   {
+    name: "MTV2",
+    title: true,
+  },
+  {
+    name: "20200823",
+    url: "/theme/colors/20200823",
+    icon: "icon-layers",
+  },
+  {
+    name: "20200824",
+    url: "/theme/colors/20200824",
+    icon: "icon-layers",
+  },
+  {
+    name: "MR2250",
+    title: true,
+  },
+  {
+    name: "20200823",
+    url: "/theme/typography/20200823",
+    icon: "icon-layers",
+  },
+  {
+    name: "20200824",
+    url: "/theme/typography/20200824",
+    icon: "icon-layers",
+  },
+];
+ */

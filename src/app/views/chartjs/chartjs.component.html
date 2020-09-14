@@ -1,11 +1,11 @@
 <div class="animated fadeIn">
   <div class="card-columns cols-2">
     <div class="card">
-      <!-- <div class="card-header">
-        Line Chart
+      <div class="card-header">
+        Tests MTV2
         <div class="card-header-actions">
           <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
+            <small class="text-muted">6 derniers tests</small>
           </a>
         </div>
       </div>
@@ -26,9 +26,88 @@
         </div>
       </div>
     </div>
+
     <div class="card">
       <div class="card-header">
-        Bar Chart
+        Tests MR2250
+        <div class="card-header-actions">
+          <a href="http://www.chartjs.org">
+            <small class="text-muted">6 derniers tests</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <canvas
+            baseChart
+            class="chart"
+            [datasets]="lineChartData2"
+            [labels]="lineChartLabels2"
+            [options]="lineChartOptions2"
+            [colors]="lineChartColours2"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Tests PASS et FAIL MTV2
+        <div class="card-header-actions">
+          <a href="http://www.chartjs.org">
+            <small class="text-muted">6 derniers tests</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <canvas
+            baseChart
+            class="chart"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Tests PASS et FAIL MR2250
+        <div class="card-header-actions">
+          <a href="http://www.chartjs.org">
+            <small class="text-muted">6 derniers tests</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <canvas
+            baseChart
+            class="chart"
+            [datasets]="barChartData2"
+            [labels]="barChartLabels2"
+            [options]="barChartOptions2"
+            [legend]="barChartLegend2"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+    <!--<div class="card">
+      <div class="card-header">
+         Bar Chart
         <div class="card-header-actions">
           <a href="http://www.chartjs.org">
             <small class="text-muted">docs</small>
@@ -95,8 +174,8 @@
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"
           ></canvas>
-        </div>
-      </div> -->
-    </div>
+        </div> 
+      </div>
+    </div>-->
   </div>
 </div>

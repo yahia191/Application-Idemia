@@ -69,7 +69,6 @@ export class ColorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.date = this.activatedRoute.snapshot.paramMap.get("date");
-    console.log(this.date);
 
     if (!this.date) {
       this.router.navigateByUrl("/404");
@@ -86,9 +85,6 @@ export class ColorsComponent implements OnInit {
   async onClickMe1() {
     let myContainer = <HTMLElement>document.querySelector("#myDiv1");
     myContainer.innerHTML = this.a + "<br>";
-  }
-  async test() {
-    console.log(this.d);
   }
 }
 

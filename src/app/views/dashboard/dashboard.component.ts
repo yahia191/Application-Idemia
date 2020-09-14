@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Chart } from "chart.js";
-import { FilesService, File } from "../../files.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { FilesService } from "../../files.service";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 
 @Component({
   templateUrl: "dashboard.component.html",
@@ -19,19 +19,22 @@ export class DashboardComponent implements OnInit {
     private filesService: FilesService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.date = this.activatedRoute.snapshot.paramMap.get("date");
 
-  ngOnInit(): void {
-    this.date = this.activatedRoute.snapshot.paramMap.get("date");
-    /* console.log(this.date); */
-
-    if (!this.date) {
-      this.router.navigateByUrl("/404");
-    } else {
-      this.getTestAutomation();
-      this.getCucumber();
-    }
+        if (!this.date) {
+          this.router.navigateByUrl("/404");
+        } else {
+          this.getTestAutomation();
+          this.getCucumber();
+        }
+      }
+    });
   }
+
+  ngOnInit(): void {}
 
   async getTestAutomation() {
     const values = await this.filesService.getTestAutomation(this.date);
@@ -41,11 +44,11 @@ export class DashboardComponent implements OnInit {
       this.d = values.d;
       this.doc = values.doc;
 
-      document.getElementById("test1").innerHTML +=
+      document.getElementById("test1").innerHTML =
         this.doc.getElementsByClassName("test-status").length + " TEST";
-      document.getElementById("test2").innerHTML +=
+      document.getElementById("test2").innerHTML =
         "le nombre de test pass " + this.c + "<br>";
-      document.getElementById("test3").innerHTML +=
+      document.getElementById("test3").innerHTML =
         "le nombre de test fail " + this.d + "<br>";
 
       new Chart("myChart", {
@@ -83,11 +86,11 @@ export class DashboardComponent implements OnInit {
       this.t = values.t;
       this.doc = values.doc;
 
-      document.getElementById("test11").innerHTML +=
+      document.getElementById("test11").innerHTML =
         this.doc.getElementsByTagName("H3").length + " TEST";
-      document.getElementById("test12").innerHTML +=
+      document.getElementById("test12").innerHTML =
         "le nombre de test pass " + this.z + "<br>";
-      document.getElementById("test13").innerHTML +=
+      document.getElementById("test13").innerHTML =
         "le nombre de test fail " + this.t + "<br>";
 
       new Chart("myChart1", {

@@ -27,7 +27,6 @@ export class TypographyComponent implements OnInit {
 
   async getValues() {
     this.date = this.activatedRoute.snapshot.paramMap.get("date");
-    console.log(this.date);
 
     if (!this.date) {
       this.router.navigateByUrl("/404");
@@ -89,8 +88,5 @@ export class TypographyComponent implements OnInit {
   async onClickMe1() {
     let myContainer = <HTMLElement>document.querySelector("#myDiv1");
     myContainer.innerHTML = this.x + "<br>";
-  }
-  async test() {
-    console.log(this.t);
   }
 }

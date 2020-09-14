@@ -36,22 +36,7 @@ function test() {
 
   var fin3;
 
-  a.forEach(
-    (element) =>
-      (fin3 =
-        fin3 +
-        {
-          name: "20200823",
-          url: "/dashboard/20200823",
-          icon: "icon-layers",
-        })
-  );
-
-  console.log(a);
-
-  var fin = fin1 + fin3;
-  console.warn(fin);
-  return a;
+  return a.reverse();
 }
 
 const list = test();
@@ -79,7 +64,7 @@ list.forEach((element) => {
     icon: "icon-layers",
   });
 });
-
+console.log(items);
 export const navItems: INavData[] = items;
 
 /*

@@ -11,7 +11,9 @@ export enum File {
 export class FilesService {
   constructor() {}
 
-  async getCucumber(
+  ngOnInit() {}
+
+  getCucumber(
     folderName: string
   ): Promise<{
     x: string;
@@ -60,12 +62,12 @@ export class FilesService {
             t++;
           }
         }
-
+        console.log(folderName + z + t);
         return { x, y, z, t, doc };
       });
   }
 
-  async getTestAutomation(
+  getTestAutomation(
     folderName: string
   ): Promise<{
     a: string;
@@ -106,7 +108,7 @@ export class FilesService {
             d++;
           }
         }
-
+        //console.log(folderName + " :" + d + c);
         return { a, b, c, d, doc };
       });
   }

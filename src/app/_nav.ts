@@ -64,7 +64,7 @@ list.forEach((element) => {
     icon: "icon-layers",
   });
 });
-console.log(items);
+
 export const navItems: INavData[] = items;
 
 /*

@@ -8,125 +8,8 @@ import { VariableAst } from "@angular/compiler";
   templateUrl: "chartjs.component.html",
 })
 export class ChartJSComponent implements OnInit {
-  /*  */
-  // lineChart
-  public lineChartData: Array<any> = [
-    { data: [74, 74, 74, 74, 0, 0], label: "Tests MTV2" },
-  ];
-  public lineChartLabels: Array<any> = [
-    "20200912",
-    "20200912",
-    "20200913",
-    "20200913",
-    "20200914",
-    "20200914",
-  ];
-  public lineChartOptions: any = {
-    animation: false,
-    responsive: true,
-  };
-  public lineChartColours: Array<any> = [
-    {
-      // grey
-      backgroundColor: "rgba(148,159,177,0.2)",
-      borderColor: "rgba(148,159,177,1)",
-      pointBackgroundColor: "rgba(148,159,177,1)",
-      pointBorderColor: "#fff",
-      pointHoverBackgroundColor: "#fff",
-      pointHoverBorderColor: "rgba(148,159,177,0.8)",
-    },
-  ];
-
-  // lineChart2
-  public lineChartData2: Array<any> = [
-    { data: [180, 180, 180, 180, 0, 0], label: "Tests MR2250" },
-  ];
-  public lineChartLabels2: Array<any> = [
-    "20200912",
-    "20200912",
-    "20200913",
-    "20200913",
-    "20200914",
-    "20200914",
-  ];
-  public lineChartOptions2: any = {
-    animation: false,
-    responsive: true,
-  };
-  public lineChartColours2: Array<any> = [
-    {
-      // grey
-      backgroundColor: "rgba(148,159,177,0.2)",
-      borderColor: "rgba(148,159,177,1)",
-      pointBackgroundColor: "rgba(148,159,177,1)",
-      pointBorderColor: "#fff",
-      pointHoverBackgroundColor: "#fff",
-      pointHoverBorderColor: "rgba(148,159,177,0.8)",
-    },
-  ];
-  public lineChartLegend = true;
-  public lineChartType = "line";
-
-  // barChart1
-  public barChartOptions: any = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-  };
-  public barChartLabels: string[] = [
-    "20200912",
-    "20200912",
-    "20200913",
-    "20200913",
-    "20200914",
-    "20200914",
-  ];
-  public barChartType = "bar";
-  public barChartLegend = true;
-
-  public barChartData: any[] = [
-    {
-      data: [42, 42, 42, 42, 0, 0],
-      label: "Test PASS",
-      backgroundColor: "rgba(75, 192, 192, 0.8)",
-    },
-    {
-      data: [32, 32, 32, 32, 0, 0],
-      label: "Test FAIL",
-      backgroundColor: "rgba(255, 99, 132, 0.8)",
-    },
-  ];
-
-  // barChart2
-  public barChartOptions2: any = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-  };
-  public barChartLabels2: string[] = [
-    "20200912",
-    "20200912",
-    "20200913",
-    "20200913",
-    "20200914",
-    "20200914",
-  ];
-  public barChartType2 = "bar";
-  public barChartLegend2 = true;
-
-  public barChartData2: any[] = [
-    {
-      data: [167, 167, 167, 167, 0, 0],
-      label: "Test PASS",
-      backgroundColor: "rgba(75, 192, 192, 0.8)",
-    },
-    {
-      data: [13, 13, 13, 13, 0, 0],
-      label: "Test FAIL",
-      backgroundColor: "rgba(255, 99, 132, 0.8)",
-    },
-  ];
-  /*  */
-
   type: any;
+  infototal: any;
   infoSuccess: any;
   infoFail: any;
 
@@ -140,6 +23,13 @@ export class ChartJSComponent implements OnInit {
   ) {}
   informationCucumber;
   informationCalabash;
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  testtotal1 = 0;
+  testtotal2 = 0;
 
   testPass2 = 0;
 
@@ -153,11 +43,12 @@ export class ChartJSComponent implements OnInit {
 
   date = "";
 
-  Information(date, type, infoFail, infoSuccess) {
+  Information(date, type, infototal, infoFail, infoSuccess) {
     this.date = date;
     this.type = type;
-    this.infoFail = infoFail;
     this.infoSuccess = infoSuccess;
+    this.infoFail = infoFail;
+    this.infototal = infototal;
     this.RecupInfo = function () {
       return;
       "info du jour " +
@@ -167,13 +58,15 @@ export class ChartJSComponent implements OnInit {
         "info fail" +
         this.infoFail +
         "info sucess" +
-        this.infoSuccess;
+        this.infoSuccess +
+        "info total" +
+        this.infototal;
     };
   }
   gestionDate() {}
   async getTestAutomation() {
     var recupdate = new Date();
-    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 4));
+    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 20));
 
     var j, m, recup;
 
@@ -196,11 +89,13 @@ export class ChartJSComponent implements OnInit {
       const values = await this.FilesService.getTestAutomation(this.date);
       /* if (values !== null)  {*/
       this.testPass1 = values.c;
-      this.testFail1 = values.d;
       this.doc = values.doc;
+      this.testtotal1 = values.doc.getElementsByClassName("test-status").length;
+      this.testFail1 = values.d;
       this.informationCalabash = new this.Information(
         this.date,
         "Calabash",
+        this.testtotal1,
         this.testFail1,
         this.testPass1
       );
@@ -217,8 +112,9 @@ export class ChartJSComponent implements OnInit {
     var recupdate = new Date();
 
     var j, m, recup;
+    console.log("getCucumber");
 
-    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 4));
+    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 20));
     while (dtdebut10 < recupdate) {
       var dd = recupdate.getDate();
       var mm = recupdate.getMonth() + 1;
@@ -239,11 +135,13 @@ export class ChartJSComponent implements OnInit {
 
       if (values !== null) {
         this.testPass2 = values.z;
-        this.testFail2 = values.t;
         this.doc = values.doc;
+        this.testtotal2 = values.doc.getElementsByTagName("H3").length;
+        this.testFail2 = values.t;
         this.informationCucumber = new this.Information(
           this.date,
           "Cucumber",
+          this.testtotal2,
           this.testFail2,
           this.testPass2
         );
@@ -258,10 +156,17 @@ export class ChartJSComponent implements OnInit {
       recupdate.setDate(recupdate.getDate() - 1);
     }
   }
-  ngOnInit(): void {
-    this.getTestAutomation();
-    this.getCucumber();
+  tabdatecal: any = [];
+  tabtotalcal: any = [];
+  tabfailcal: any = [];
+  tabpasscal: any = [];
 
+  tabdatecuc: any = [];
+  tabtotalcuc: any = [];
+  tabfailcuc: any = [];
+  tabpasscuc: any = [];
+
+  ngOnInit(): void {
     this.Result();
   }
   async Result() {
@@ -269,11 +174,120 @@ export class ChartJSComponent implements OnInit {
       await this.getTestAutomation();
       await this.getCucumber();
 
-      //console.log(this.tableauResumCalabash);
+      console.log(this.tableauResumCalabash);
 
-      //console.log(this.tableauResumCucumber);
+      console.log(this.tableauResumCucumber);
+
+      for (var i in this.tableauResumCalabash) {
+        this.tabdatecal.push(this.tableauResumCalabash[i].date);
+        this.tabfailcal.push(this.tableauResumCalabash[i].infoFail);
+        this.tabpasscal.push(this.tableauResumCalabash[i].infoSuccess);
+        this.tabtotalcal.push(this.tableauResumCalabash[i].infototal);
+      }
+      for (var j in this.tableauResumCucumber) {
+        this.tabdatecuc.push(this.tableauResumCucumber[j].date);
+        this.tabfailcuc.push(this.tableauResumCucumber[j].infoFail);
+        this.tabpasscuc.push(this.tableauResumCucumber[j].infoSuccess);
+        this.tabtotalcuc.push(this.tableauResumCucumber[i].infototal);
+      }
+
+      console.warn(this.tabfailcuc);
     } catch (error) {
       console.log(error);
     }
   }
+  /*  */
+  // lineChart
+  public lineChartData: Array<any> = [
+    { data: this.tabtotalcal, label: "Tests MTV2" },
+  ];
+  public lineChartLabels: Array<any> = this.tabdatecal;
+  public lineChartOptions: any = {
+    animation: false,
+    responsive: true,
+  };
+  public lineChartColours: Array<any> = [
+    {
+      // grey
+      backgroundColor: "rgba(148,159,177,0.2)",
+      borderColor: "rgba(148,159,177,1)",
+      pointBackgroundColor: "rgba(148,159,177,1)",
+      pointBorderColor: "#fff",
+      pointHoverBackgroundColor: "#fff",
+      pointHoverBorderColor: "rgba(148,159,177,0.8)",
+    },
+  ];
+
+  // lineChart2
+  public lineChartData2: Array<any> = [
+    { data: this.tabtotalcuc, label: "Tests MR2250" },
+  ];
+  public lineChartLabels2: Array<any> = this.tabdatecuc;
+  public lineChartOptions2: any = {
+    animation: false,
+    responsive: true,
+  };
+  public lineChartColours2: Array<any> = [
+    {
+      // grey
+      backgroundColor: "rgba(148,159,177,0.2)",
+      borderColor: "rgba(148,159,177,1)",
+      pointBackgroundColor: "rgba(148,159,177,1)",
+      pointBorderColor: "#fff",
+      pointHoverBackgroundColor: "#fff",
+      pointHoverBorderColor: "rgba(148,159,177,0.8)",
+    },
+  ];
+  public lineChartLegend = true;
+  public lineChartType = "line";
+
+  // barChart1
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    //responsive: true,
+  };
+  public barChartLabels: string[] = this.tabdatecal;
+  public barChartType = "bar";
+  public barChartLegend = true;
+
+  public barChartData: any[] = [
+    {
+      data: this.tabpasscal,
+      label: "Test PASS",
+      backgroundColor: "green",
+      borderColor: "green",
+      pointBackgroundColor: "green",
+      pointBorderColor: "green",
+      pointHoverBackgroundColor: "green",
+      pointHoverBorderColor: "green",
+    },
+    {
+      data: this.tabfailcal,
+      label: "Test FAIL",
+      backgroundColor: "red",
+    },
+  ];
+
+  // barChart2
+  public barChartOptions2: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+  };
+  public barChartLabels2: string[] = this.tabdatecuc;
+  public barChartType2 = "bar";
+  public barChartLegend2 = true;
+
+  public barChartData2: any[] = [
+    {
+      data: this.tabpasscuc,
+      label: "Test PASS",
+      backgroundColor: "green",
+    },
+    {
+      data: this.tabfailcuc,
+      label: "Test FAIL",
+      backgroundColor: "red",
+    },
+  ];
+  /*  */
 }

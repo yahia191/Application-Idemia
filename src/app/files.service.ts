@@ -62,7 +62,6 @@ export class FilesService {
             t++;
           }
         }
-        console.log(folderName + z + t);
         return { x, y, z, t, doc };
       });
   }

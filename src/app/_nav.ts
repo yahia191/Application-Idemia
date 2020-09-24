@@ -43,16 +43,16 @@ const list = test();
 
 let items: INavData[] = [
   {
-    name: "tests",
+    name: "Dashboard",
     title: true,
   },
   {
-    name: "historique",
+    name: "charts",
     url: "/charts",
     icon: "icon-pie-chart",
   },
   {
-    name: "Dashboard",
+    name: "Tests par date",
     title: true,
   },
 ];

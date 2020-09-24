@@ -15,6 +15,9 @@ export class ChartJSComponent implements OnInit {
 
   tableauResumCucumber = [];
   tableauResumCalabash = [];
+  /*  */
+  /*  */
+  tableauResumMr2250 = [];
   RecupInfo: () => void;
   constructor(
     private FilesService: FilesService,
@@ -23,21 +26,17 @@ export class ChartJSComponent implements OnInit {
   ) {}
   informationCucumber;
   informationCalabash;
-  /*  */
-  /*  */
-  /*  */
-  /*  */
-  /*  */
+  informationMr2250;
+
   testtotal1 = 0;
   testtotal2 = 0;
-
-  testPass2 = 0;
-
-  testFail2 = 0;
-
+  testtotal3 = 0;
   testPass1 = 0;
-
+  testPass2 = 0;
+  testPass3 = 0;
   testFail1 = 0;
+  testFail2 = 0;
+  testFail3 = 0;
 
   doc;
 
@@ -156,6 +155,52 @@ export class ChartJSComponent implements OnInit {
       recupdate.setDate(recupdate.getDate() - 1);
     }
   }
+
+  async getMr2250Report2() {
+    var recupdate = new Date();
+
+    var j, m, recup;
+
+    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 20));
+    while (dtdebut10 < recupdate) {
+      var dd = recupdate.getDate();
+      var mm = recupdate.getMonth() + 1;
+      var yyyy = recupdate.getFullYear();
+      if (dd < 10) {
+        j = "0" + dd;
+      } else {
+        j = dd;
+      }
+      if (mm < 10) {
+        m = "0" + mm;
+      } else {
+        m = mm;
+      }
+      recup = yyyy + "" + m + "" + j;
+      this.date = recup;
+      const values = await this.FilesService.getMr2250Report2(this.date);
+
+      if (values !== null) {
+        this.testPass3 = values.p;
+        this.doc = values.doc;
+        this.testtotal3 = values.doc.getElementsByTagName("H3").length;
+        this.testFail3 = values.o;
+        this.informationMr2250 = new this.Information(
+          this.date,
+          "MR2250v2",
+          this.testtotal3,
+          this.testFail3,
+          this.testPass3
+        );
+
+        this.informationMr2250.RecupInfo();
+        if (this.tableauResumMr2250.indexOf(this.informationMr2250 === -1)) {
+          this.tableauResumMr2250.push(this.informationMr2250);
+        }
+      }
+      recupdate.setDate(recupdate.getDate() - 1);
+    }
+  }
   tabdatecal: any = [];
   tabtotalcal: any = [];
   tabfailcal: any = [];
@@ -166,6 +211,11 @@ export class ChartJSComponent implements OnInit {
   tabfailcuc: any = [];
   tabpasscuc: any = [];
 
+  tabdatemr: any = [];
+  tabtotalmr: any = [];
+  tabfailmr: any = [];
+  tabpassmr: any = [];
+
   ngOnInit(): void {
     this.Result();
   }
@@ -173,10 +223,13 @@ export class ChartJSComponent implements OnInit {
     try {
       await this.getTestAutomation();
       await this.getCucumber();
+      await this.getMr2250Report2();
 
       console.log(this.tableauResumCalabash);
 
       console.log(this.tableauResumCucumber);
+
+      console.log(this.tableauResumMr2250);
 
       for (var i in this.tableauResumCalabash) {
         this.tabdatecal.push(this.tableauResumCalabash[i].date);
@@ -188,7 +241,13 @@ export class ChartJSComponent implements OnInit {
         this.tabdatecuc.push(this.tableauResumCucumber[j].date);
         this.tabfailcuc.push(this.tableauResumCucumber[j].infoFail);
         this.tabpasscuc.push(this.tableauResumCucumber[j].infoSuccess);
-        this.tabtotalcuc.push(this.tableauResumCucumber[i].infototal);
+        this.tabtotalcuc.push(this.tableauResumCucumber[j].infototal);
+      }
+      for (var k in this.tableauResumMr2250) {
+        this.tabdatemr.push(this.tableauResumMr2250[k].date);
+        this.tabfailmr.push(this.tableauResumMr2250[k].infoFail);
+        this.tabpassmr.push(this.tableauResumMr2250[k].infoSuccess);
+        this.tabtotalmr.push(this.tableauResumMr2250[k].infototal);
       }
 
       console.warn(this.tabfailcuc);
@@ -241,6 +300,29 @@ export class ChartJSComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = "line";
 
+  // lineChart3
+  public lineChartData3: Array<any> = [
+    { data: this.tabtotalmr, label: "Tests MR2250(v2)" },
+  ];
+  public lineChartLabels3: Array<any> = this.tabdatemr;
+  public lineChartOptions3: any = {
+    animation: false,
+    responsive: true,
+  };
+  public lineChartColours3: Array<any> = [
+    {
+      // grey
+      backgroundColor: "rgba(148,159,177,0.2)",
+      borderColor: "rgba(148,159,177,1)",
+      pointBackgroundColor: "rgba(148,159,177,1)",
+      pointBorderColor: "#fff",
+      pointHoverBackgroundColor: "#fff",
+      pointHoverBorderColor: "rgba(148,159,177,0.8)",
+    },
+  ];
+  public lineChartLegend3 = true;
+  public lineChartType3 = "line";
+
   // barChart1
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
@@ -285,6 +367,28 @@ export class ChartJSComponent implements OnInit {
     },
     {
       data: this.tabfailcuc,
+      label: "Test FAIL",
+      backgroundColor: "red",
+    },
+  ];
+
+  // barChart3
+  public barChartOptions3: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+  };
+  public barChartLabels3: string[] = this.tabdatemr;
+  public barChartType3 = "bar";
+  public barChartLegend3 = true;
+
+  public barChartData3: any[] = [
+    {
+      data: this.tabpassmr,
+      label: "Test PASS",
+      backgroundColor: "green",
+    },
+    {
+      data: this.tabfailmr,
       label: "Test FAIL",
       backgroundColor: "red",
     },

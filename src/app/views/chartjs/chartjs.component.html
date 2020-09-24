@@ -56,6 +56,33 @@
 
     <div class="card">
       <div class="card-header">
+        Tests MR2250(v2)
+        <div class="card-header-actions">
+          <a href="http://www.chartjs.org">
+            <small class="text-muted">30 derniers tests</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <canvas
+            baseChart
+            class="chart"
+            [datasets]="lineChartData3"
+            [labels]="lineChartLabels3"
+            [options]="lineChartOptions3"
+            [colors]="lineChartColours3"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
         Tests PASS et FAIL MTV2
         <div class="card-header-actions">
           <a href="http://www.chartjs.org">
@@ -98,6 +125,32 @@
             [labels]="barChartLabels2"
             [options]="barChartOptions2"
             [legend]="barChartLegend2"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Tests PASS et FAIL MR2250(v2)
+        <div class="card-header-actions">
+          <a href="http://www.chartjs.org">
+            <small class="text-muted">30 derniers tests</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <canvas
+            baseChart
+            class="chart"
+            [datasets]="barChartData3"
+            [labels]="barChartLabels3"
+            [options]="barChartOptions3"
+            [legend]="barChartLegend3"
             [chartType]="barChartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"

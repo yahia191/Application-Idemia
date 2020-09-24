@@ -11,6 +11,8 @@ export class DashboardComponent implements OnInit {
   t = 0;
   c = 0;
   d = 0;
+  p = 0;
+  o = 0;
   doc;
 
   date = "";
@@ -29,6 +31,7 @@ export class DashboardComponent implements OnInit {
         } else {
           this.getTestAutomation();
           this.getCucumber();
+          this.getMr2250Report2();
         }
       }
     });
@@ -93,6 +96,8 @@ export class DashboardComponent implements OnInit {
       document.getElementById("test13").innerHTML =
         "le nombre de test fail " + this.t + "<br>";
 
+      /* console.warn(this.z, this.t); */
+
       new Chart("myChart1", {
         type: "doughnut",
         data: {
@@ -101,6 +106,50 @@ export class DashboardComponent implements OnInit {
             {
               label: "i% des tests",
               data: [this.z, this.t],
+              backgroundColor: [
+                "rgba(102, 204, 0, 0.2)",
+                "rgba(204, 0, 0, 0.2)",
+              ],
+
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "pourcentages des test pass/ fail",
+          },
+        },
+      });
+    }
+  }
+
+  async getMr2250Report2() {
+    const values = await this.filesService.getMr2250Report2(this.date);
+
+    if (values !== null) {
+      this.p = values.p;
+      this.o = values.o;
+      this.doc = values.doc;
+
+      document.getElementById("test21").innerHTML =
+        this.doc.getElementsByTagName("H3").length + " TEST";
+      document.getElementById("test22").innerHTML =
+        "le nombre de test pass " + this.p + "<br>";
+      document.getElementById("test23").innerHTML =
+        "le nombre de test fail " + this.o + "<br>";
+
+      /* console.warn("this.p, this.o"); */
+
+      new Chart("myChart2", {
+        type: "doughnut",
+        data: {
+          labels: ["pass", "fail"],
+          datasets: [
+            {
+              label: "i% des tests",
+              data: [this.p, this.o],
               backgroundColor: [
                 "rgba(102, 204, 0, 0.2)",
                 "rgba(204, 0, 0, 0.2)",

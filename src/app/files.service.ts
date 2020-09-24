@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 export enum File {
   cucumber = "Cucumber.html",
   testAutomation = "Test-Automation-Report.html",
+  mr2250report2 = "MR2250_report2.html",
 }
 
 @Injectable({
@@ -62,7 +63,63 @@ export class FilesService {
             t++;
           }
         }
+        console.warn(z, t);
+
         return { x, y, z, t, doc };
+      });
+  }
+
+  getMr2250Report2(
+    folderName: string
+  ): Promise<{
+    e: string;
+    f: string;
+    p: number;
+    o: number;
+    doc: any;
+  }> {
+    let e = "";
+    let f = "";
+    let p = 0;
+    let o = 0;
+    let doc;
+
+    return fetch("/assets/dates/" + folderName + "/" + File.mr2250report2)
+      .then((res) => res.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        doc = parser.parseFromString(data, "text/html");
+
+        for (
+          let index = 0;
+          index < doc.getElementsByTagName("H3").length;
+          index++
+        ) {
+          if (
+            doc.getElementsByTagName("H3")[index].getAttribute("style") ===
+            "cursor: pointer;"
+          ) {
+            f +=
+              doc.getElementsByTagName("H2")[index].textContent +
+              "<br>" +
+              doc.getElementsByTagName("H3")[index].textContent +
+              "<br><br>";
+            p++;
+          }
+          if (
+            doc.getElementsByTagName("H3")[index].getAttribute("style") ===
+            "background: rgb(196, 13, 13); color: rgb(255, 255, 255); cursor: pointer;"
+          ) {
+            e +=
+              doc.getElementsByTagName("H2")[index].textContent +
+              "<br>" +
+              doc.getElementsByTagName("H3")[index].textContent +
+              "<br><br>";
+            o++;
+          }
+          console.warn(p, o);
+        }
+        return { e, f, p, o, doc };
       });
   }
 

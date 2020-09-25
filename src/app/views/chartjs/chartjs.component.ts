@@ -65,7 +65,7 @@ export class ChartJSComponent implements OnInit {
   gestionDate() {}
   async getTestAutomation() {
     var recupdate = new Date();
-    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 20));
+    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 30));
 
     var j, m, recup;
 
@@ -113,7 +113,7 @@ export class ChartJSComponent implements OnInit {
     var j, m, recup;
     console.log("getCucumber");
 
-    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 20));
+    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 30));
     while (dtdebut10 < recupdate) {
       var dd = recupdate.getDate();
       var mm = recupdate.getMonth() + 1;
@@ -161,7 +161,7 @@ export class ChartJSComponent implements OnInit {
 
     var j, m, recup;
 
-    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 20));
+    var dtdebut10 = new Date(new Date().setDate(new Date().getDate() - 30));
     while (dtdebut10 < recupdate) {
       var dd = recupdate.getDate();
       var mm = recupdate.getMonth() + 1;
@@ -250,7 +250,18 @@ export class ChartJSComponent implements OnInit {
         this.tabtotalmr.push(this.tableauResumMr2250[k].infototal);
       }
 
-      console.warn(this.tabfailcuc);
+      console.warn(this.tabdatecuc.reverse());
+      console.warn(this.tabfailcuc.reverse());
+      console.warn(this.tabpasscuc.reverse());
+      console.warn(this.tabtotalcuc.reverse());
+      console.warn(this.tabdatecal.reverse());
+      console.warn(this.tabfailcal.reverse());
+      console.warn(this.tabpasscal.reverse());
+      console.warn(this.tabtotalcal.reverse());
+      console.warn(this.tabdatemr.reverse());
+      console.warn(this.tabfailmr.reverse());
+      console.warn(this.tabpassmr.reverse());
+      console.warn(this.tabtotalmr.reverse());
     } catch (error) {
       console.log(error);
     }

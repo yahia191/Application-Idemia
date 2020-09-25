@@ -1,6 +1,5 @@
 import { INavData } from "@coreui/angular";
 
-/*var start= "20200823";*/
 function test() {
   var start = "2020-08-23";
   var v1start = start.split("-");
@@ -66,51 +65,3 @@ list.forEach((element) => {
 });
 
 export const navItems: INavData[] = items;
-
-/*
-export const navItems: INavData[] = [
-  
-  {
-    name: "Dashboard",
-    title: true,
-  },
-  {
-    name: "20200823",
-    url: "/dashboard/20200823",
-    icon: "icon-layers",
-  },
-  {
-    name: "20200824",
-    url: "/dashboard/20200824",
-    icon: "icon-layers",
-  },
-   {
-    name: "MTV2",
-    title: true,
-  },
-  {
-    name: "20200823",
-    url: "/theme/colors/20200823",
-    icon: "icon-layers",
-  },
-  {
-    name: "20200824",
-    url: "/theme/colors/20200824",
-    icon: "icon-layers",
-  },
-  {
-    name: "MR2250",
-    title: true,
-  },
-  {
-    name: "20200823",
-    url: "/theme/typography/20200823",
-    icon: "icon-layers",
-  },
-  {
-    name: "20200824",
-    url: "/theme/typography/20200824",
-    icon: "icon-layers",
-  },
-];
- */

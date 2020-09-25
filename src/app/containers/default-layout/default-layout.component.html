@@ -61,7 +61,18 @@
   <app-aside [fixed]="true" [display]="false" [ngClass]="'test'">
     <tabset>
       <tab>
-        test
+        <h1 style="font-family: Comic Sans MS">- Test 1 :</h1>
+        <ol>
+          <li style="font-family: Comic Sans MS">MTV2.</li>
+        </ol>
+        <h1 style="font-family: Comic Sans MS">- Test 2 :</h1>
+        <ol>
+          <li style="font-family: Comic Sans MS">MR 2250.</li>
+        </ol>
+        <h1 style="font-family: Comic Sans MS">- Test 3 :</h1>
+        <ol>
+          <li style="font-family: Comic Sans MS">Test fail de MTV2.</li>
+        </ol>
         <ng-template tabHeading><i class="icon-list"></i></ng-template>
 
         <div *ngFor="let dirName of dirNames">

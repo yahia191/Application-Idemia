@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 export enum File {
-  cucumber = "Cucumber.html",
+  cucumber = "MR2250_report.html",
   testAutomation = "Test-Automation-Report.html",
   mr2250report2 = "MR2250_report2.html",
 }

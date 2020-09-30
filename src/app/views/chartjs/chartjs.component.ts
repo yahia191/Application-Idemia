@@ -225,12 +225,6 @@ export class ChartJSComponent implements OnInit {
       await this.getCucumber();
       await this.getMr2250Report2();
 
-      console.log(this.tableauResumCalabash);
-
-      console.log(this.tableauResumCucumber);
-
-      console.log(this.tableauResumMr2250);
-
       for (var i in this.tableauResumCalabash) {
         this.tabdatecal.push(this.tableauResumCalabash[i].date);
         this.tabfailcal.push(this.tableauResumCalabash[i].infoFail);
@@ -239,15 +233,19 @@ export class ChartJSComponent implements OnInit {
       }
       for (var j in this.tableauResumCucumber) {
         this.tabdatecuc.push(this.tableauResumCucumber[j].date);
-        this.tabfailcuc.push(this.tableauResumCucumber[j].infoFail);
-        this.tabpasscuc.push(this.tableauResumCucumber[j].infoSuccess);
+        /*  this.tabfailcuc.push(this.tableauResumCucumber[j].infoFail) +
+          this.tableauResumMr2250[j].infoFail;
+        this.tabpasscuc.push(this.tableauResumCucumber[j].infoSuccess); */
         this.tabtotalcuc.push(this.tableauResumCucumber[j].infototal);
       }
       for (var k in this.tableauResumMr2250) {
         this.tabdatemr.push(this.tableauResumMr2250[k].date);
         this.tabfailmr.push(this.tableauResumMr2250[k].infoFail);
-        this.tabpassmr.push(this.tableauResumMr2250[k].infoSuccess);
-        this.tabtotalmr.push(this.tableauResumMr2250[k].infototal);
+        this.tabpassmr.push(
+          this.tableauResumMr2250[k].infoSuccess +
+            this.tableauResumCucumber[k].infoSuccess
+        );
+        /* this.tabtotalmr.push(this.tableauResumMr2250[k].infototal); */
       }
 
       console.warn(this.tabdatecuc.reverse());
@@ -311,29 +309,6 @@ export class ChartJSComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = "line";
 
-  // lineChart3
-  public lineChartData3: Array<any> = [
-    { data: this.tabtotalmr, label: "Tests MR2250(v2)" },
-  ];
-  public lineChartLabels3: Array<any> = this.tabdatemr;
-  public lineChartOptions3: any = {
-    animation: false,
-    responsive: true,
-  };
-  public lineChartColours3: Array<any> = [
-    {
-      // grey
-      backgroundColor: "rgba(148,159,177,0.2)",
-      borderColor: "rgba(148,159,177,1)",
-      pointBackgroundColor: "rgba(148,159,177,1)",
-      pointBorderColor: "#fff",
-      pointHoverBackgroundColor: "#fff",
-      pointHoverBorderColor: "rgba(148,159,177,0.8)",
-    },
-  ];
-  public lineChartLegend3 = true;
-  public lineChartType3 = "line";
-
   // barChart1
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
@@ -362,28 +337,6 @@ export class ChartJSComponent implements OnInit {
   ];
 
   // barChart2
-  public barChartOptions2: any = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-  };
-  public barChartLabels2: string[] = this.tabdatecuc;
-  public barChartType2 = "bar";
-  public barChartLegend2 = true;
-
-  public barChartData2: any[] = [
-    {
-      data: this.tabpasscuc,
-      label: "Test PASS",
-      backgroundColor: "green",
-    },
-    {
-      data: this.tabfailcuc,
-      label: "Test FAIL",
-      backgroundColor: "red",
-    },
-  ];
-
-  // barChart3
   public barChartOptions3: any = {
     scaleShowVerticalLines: false,
     responsive: true,

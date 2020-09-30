@@ -19,8 +19,7 @@ import { DefaultLayoutComponent } from "./containers";
 
 import { P404Component } from "./views/error/404.component";
 import { P500Component } from "./views/error/500.component";
-import { LoginComponent } from "./views/login/login.component";
-import { RegisterComponent } from "./views/register/register.component";
+
 import { FilesService } from "./files.service";
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
@@ -57,14 +56,7 @@ import { HttpClientModule } from "@angular/common/http";
     ChartsModule,
     HttpClientModule,
   ],
-  declarations: [
-    AppComponent,
-    ...APP_CONTAINERS,
-    P404Component,
-    P500Component,
-    LoginComponent,
-    RegisterComponent,
-  ],
+  declarations: [AppComponent, ...APP_CONTAINERS, P404Component, P500Component],
   providers: [
     FilesService,
     {

@@ -13,6 +13,9 @@ export class DashboardComponent implements OnInit {
   d = 0;
   p = 0;
   o = 0;
+  sum = [];
+  somme = 0;
+
   doc;
 
   date = "";
@@ -88,15 +91,16 @@ export class DashboardComponent implements OnInit {
       this.z = values.z;
       this.t = values.t;
       this.doc = values.doc;
-
+      this.sum.push(values.z);
+      this.somme = this.sum[0] + this.sum[1];
       document.getElementById("test11").innerHTML =
         this.doc.getElementsByTagName("H3").length + " TEST";
       document.getElementById("test12").innerHTML =
-        "le nombre de test pass " + this.z + "<br>";
-      document.getElementById("test13").innerHTML =
-        "le nombre de test fail " + this.t + "<br>";
+        "le nombre de test pass " + this.somme + "<br>";
+      /*document.getElementById("test13").innerHTML =
+        "le nombre de test fail " + this.t + "<br>";*/
 
-      /* console.warn(this.z, this.t); */
+      console.warn(this.somme);
 
       new Chart("myChart1", {
         type: "doughnut",
@@ -132,17 +136,17 @@ export class DashboardComponent implements OnInit {
       this.p = values.p;
       this.o = values.o;
       this.doc = values.doc;
+      this.sum.push(values.p);
+      /* this.somme = this.sum[0] + this.sum[1]; */
 
-      document.getElementById("test21").innerHTML =
-        this.doc.getElementsByTagName("H3").length + " TEST";
-      document.getElementById("test22").innerHTML =
-        "le nombre de test pass " + this.p + "<br>";
-      document.getElementById("test23").innerHTML =
+      /* document.getElementById("test21").innerHTML =
+        this.doc.getElementsByTagName("H3").length + " TEST"; */
+      /*.getElementById("test22").innerHTML =
+        "le nombre de test pass " + this.p + "<br>";*/
+      document.getElementById("test13").innerHTML =
         "le nombre de test fail " + this.o + "<br>";
 
-      /* console.warn("this.p, this.o"); */
-
-      new Chart("myChart2", {
+      /* new Chart("myChart2", {
         type: "doughnut",
         data: {
           labels: ["pass", "fail"],
@@ -165,7 +169,7 @@ export class DashboardComponent implements OnInit {
             text: "pourcentages des test pass/ fail",
           },
         },
-      });
+      }); */
     }
   }
 }
